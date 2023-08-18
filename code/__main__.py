@@ -9,7 +9,7 @@ import seaborn as sns
 import warnings
 warnings.filterwarnings("ignore")
 
-def main(fileurl=None, output=None, continuous=None, nominal=None):
+def main(fileurl=None, output=None, continuous=None, nominal=None, epoch=None):
     """
     Step 1: Data Preparation & EDA
     """
@@ -42,9 +42,17 @@ def main(fileurl=None, output=None, continuous=None, nominal=None):
     """
     df_1 = feature_engineering(df=df, continuous=True, cols=continuous)
     df_2 = feature_engineering(df=df_1, cols=nominal)
-    df_1.to_csv(os.path.join(output, 'data1.csv'), index=False)
-    df_2.to_csv(os.path.join(output, 'data2.csv'), index=False)
-    print(f'\n')
+    # df_1.to_csv(os.path.join(output, 'data1.csv'), index=False)
+    # df_2.to_csv(os.path.join(output, 'data2.csv'), index=False)
+    print(f'Dataset is READY!\n')
+
+    """
+    Step 2: Clustering Algorithms
+    """
+    # 2.1 Centroid-based: K-means
+
+    # 2.2 Density-based: DBSCAN
+
     print(f"Project Ends!")
     return
 
@@ -59,5 +67,6 @@ if __name__ == '__main__':
     main(fileurl = 'https://raw.githubusercontent.com/xinxiewu/datasets/main/customer_segmentation/wholesale_customers_data.csv',
          output = r'../public/output',
          continuous = ['Fresh', 'Milk', 'Grocery', 'Frozen', 'Detergents_Paper', 'Delicassen'],
-         nominal = ['Channel', 'Region']
+         nominal = ['Channel', 'Region'],
+         epoch = 100
          )

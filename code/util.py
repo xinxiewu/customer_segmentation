@@ -142,18 +142,18 @@ def feature_engineering(df=None, continuous=False, cols=None, fname='continuous_
 
         for col in cols:
             # Original Distribution
-            temp = sns.histplot(getattr(df, col), kde=True, color='purple', ax=ax[i])
+            temp = sns.histplot(getattr(res_df, col), kde=True, color='purple', ax=ax[i])
             temp.set(xlabel=col, ylabel='Density', title=f"Originals of {col}")
             i += 1
             # Log Distribution
-            df[col] = np.log(df[col])
-            temp = sns.histplot(getattr(df, col), kde=True, color='purple', ax=ax[i])
+            res_df[col] = np.log(res_df[col])
+            temp = sns.histplot(getattr(res_df, col), kde=True, color='purple', ax=ax[i])
             temp.set(xlabel=col, ylabel='Density', title=f"Logs of {col}")
             i += 1
             # Standardization Distribuion
             scaler = preprocessing.StandardScaler()
-            df[col] = scaler.fit_transform(pd.DataFrame(df[col]))
-            temp = sns.histplot(getattr(df, col), kde=True, color='purple', ax=ax[i])
+            res_df[col] = scaler.fit_transform(pd.DataFrame(res_df[col]))
+            temp = sns.histplot(getattr(res_df, col), kde=True, color='purple', ax=ax[i])
             temp.set(xlabel=col, ylabel='Density', title=f"Standardization of {col}")
             i += 1
 
