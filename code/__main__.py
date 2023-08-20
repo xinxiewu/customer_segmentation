@@ -15,6 +15,7 @@ def main(fileurl=None, output=None, continuous=None, nominal=None, epoch=None):
     """
     # 1.1 Download dataset from Github & read as DataFrame
     df = download_file(fileurl)
+    # df = pd.read_csv('wholesale_customers_data.csv')
     print(f"Loaded dataset with {df.shape}\n")
     # 1.2 EDA
     # 1.2.1 Attributes Distributions (outliers) & Missing Values
@@ -50,9 +51,8 @@ def main(fileurl=None, output=None, continuous=None, nominal=None, epoch=None):
     Step 2: Clustering Algorithms
     """
     # 2.1 Centroid-based: K-means
-
-    # 2.2 Density-based: DBSCAN
-
+    fname = kmeans(df_list=[df,df_1,df_2], cluster_high=15)
+    print(f"K-means results saved as {fname}\n")
     print(f"Project Ends!")
     return
 
